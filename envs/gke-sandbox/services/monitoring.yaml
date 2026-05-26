@@ -1,0 +1,5 @@
+image:
+  repository: gcr.io/siscale-aiops/component-webservice
+
+logVolume:
+  size: 5Gi

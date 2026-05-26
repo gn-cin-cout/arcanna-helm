@@ -1,0 +1,11 @@
+name: aiops-sandbox
+elasticsearchRef: aiops-sandbox
+# publicBaseUrl omitted — NodePort mode. Set if fronting Kibana with an ingress.
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "1"

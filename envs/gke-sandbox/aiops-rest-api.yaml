@@ -1,0 +1,6 @@
+image:
+  repository: gcr.io/siscale-aiops/aiops-rest-api-release
+
+samples:
+  enabled: true
+  profile: "dev"

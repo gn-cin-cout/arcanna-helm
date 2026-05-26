@@ -1,0 +1,58 @@
+image:
+  repository: gcr.io/siscale-aiops/component-core-standalone
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: gcr-pull-secret
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limits:
+    cpu: "2000m"
+    memory: "2048Mi"
+
+# Filebeat sidecar
+filebeat:
+  enabled: true
+  image: docker.elastic.co/beats/filebeat:8.19.9
+  configMapName: filebeat-shipper-config
+  createConfigMap: false
+  monitoringUrl: "http://monitoring:9802/api/v1/logs"
+  resources:
+    requests:
+      cpu: "150m"
+      memory: "64Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+# Log volume
+logVolume:
+  storageClassName: ""
+  size: 512Mi
+
+# Secret references
+esSecretName: aiops-staging-es-elastic-user
+redisSecretName: redis-credentials
+postgresSecretName: postgres-credentials
+appSecretName: arcanna-app-credentials
+
+# Service
+service:
+  port: 6000
+
+# Minimal config — only what env vars reference
+# Full config lives in shared main-config chart
+config:
+  port: 6000
+  elasticsearch:
+    hosts: "aiops-staging-es-http"
+    port: "9200"
+    schema: "https"
+  hypervisor:
+    url: "http://hypervisor:8000"

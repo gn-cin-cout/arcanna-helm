@@ -1,0 +1,18 @@
+clusterName: aiops-sandbox
+
+nodeSets:
+  - name: default
+    count: 1
+    config:
+      node.store.allow_mmap: false
+    javaOpts: "-Xms1g -Xmx1g"
+    resources:
+      requests:
+        memory: "2Gi"
+        cpu: "500m"
+      limits:
+        memory: "3Gi"
+        cpu: "2"
+    storage:
+      size: 30Gi
+      storageClassName: standard-rwo

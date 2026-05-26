@@ -1,0 +1,10 @@
+storagePvc:
+  storageClassName: standard-rwo
+  size: 10Gi
+
+logPvc:
+  storageClassName: standard-rwo
+  size: 2Gi
+
+gpu:
+  enabled: false
