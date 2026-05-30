@@ -1,5 +1,5 @@
 persistence:
-  storageClassName: pd-ssd
+  storageClassName: standard-rwo
   size: 50Gi
 
 resources:

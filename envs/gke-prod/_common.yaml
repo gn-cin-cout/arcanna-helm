@@ -1,0 +1,8 @@
+esSecretName: aiops-es-elastic-user
+elasticsearch:
+  hosts: "aiops-es-http"
+config:
+  elasticsearch:
+    hosts: "aiops-es-http"
+logVolume:
+  storageClassName: standard-rwo
