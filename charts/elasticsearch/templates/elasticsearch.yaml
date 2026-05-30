@@ -21,12 +21,14 @@ spec:
                 value: {{ .javaOpts | quote }}
             resources:
               {{- toYaml .resources | nindent 14 }}
+        {{- if not $.Values.autopilot }}
         initContainers:
           - name: sysctl
             securityContext:
               privileged: true
               runAsUser: 0
             command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+        {{- end }}
     volumeClaimTemplates:
       - metadata:
           name: elasticsearch-data

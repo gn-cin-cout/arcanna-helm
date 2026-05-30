@@ -6,3 +6,4 @@ config:
     hosts: "aiops-es-http"
 logVolume:
   storageClassName: standard-rwo
+autopilot: true
