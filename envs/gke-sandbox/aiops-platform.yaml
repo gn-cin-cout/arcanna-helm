@@ -1,8 +1,0 @@
-# backendUrl / monitoringUrl are resolved at deploy time from the ArgoCD
-# Application valuesObject or from a NodePort auto-detection.
-# Set these explicitly once you know your GKE node IPs or have an ingress.
-
-service:
-  nodePort:
-    enabled: true
-    port: 31400

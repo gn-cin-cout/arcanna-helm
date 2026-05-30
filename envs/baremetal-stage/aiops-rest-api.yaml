@@ -1,6 +1,11 @@
 image:
   repository: gcr.io/siscale-aiops/aiops-rest-api-release
 
+service:
+  type: ClusterIP
+  nodePort:
+    enabled: false
+
 samples:
   enabled: true
   profile: "dev"

@@ -1,5 +1,5 @@
 persistence:
-  storageClassName: standard-rwo
+  storageClassName: sc-e2e
   size: 5Gi
 
 resources:

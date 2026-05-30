@@ -13,14 +13,16 @@ resources:
     cpu: "1"
     memory: "1Gi"
 
+# Hypervisor data volume — switch storageClassName to NFS (or any RWX class)
+# if you need shared data across replicas.
 dataVolume:
   enabled: true
   mountPath: /opt/arcanna/data
   size: 5Gi
-  storageClassName: standard-rwo
+  storageClassName: nfs
 
 logVolume:
-  size: 512Mi
+  size: 1Gi
 
 extraConfig:
   enabled: true
