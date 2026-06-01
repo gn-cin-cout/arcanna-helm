@@ -16,6 +16,7 @@ spec:
               elements:
                 # Wave 0 — datastores
                 - { name: postgres, chart: postgres, wave: "0", release: postgres }
+                - { name: redis,    chart: redis,    wave: "0", release: redis }
   template:
     metadata:
       name: 'arcanna-{{name}}'
