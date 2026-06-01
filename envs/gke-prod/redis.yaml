@@ -1,11 +1,13 @@
 persistence:
   storageClassName: standard-rwo
-  size: 10Gi
-
+  size: 1Gi
 resources:
   requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
     cpu: "500m"
     memory: "512Mi"
-  limits:
-    cpu: "2"
-    memory: "4Gi"
+secret:
+  create: true
+  password: arcanna123
