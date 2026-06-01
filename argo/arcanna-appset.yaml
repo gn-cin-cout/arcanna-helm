@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: arcanna
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: gke-prod
+                  namespace: ns-arcanna
+                  cluster: https://kubernetes.default.svc
+          - list:
+              elements:
+                # Wave 0 — datastores
+                - { name: postgres, chart: postgres, wave: "0", release: postgres }
+  template:
+    metadata:
+      name: 'arcanna-{{.name}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{.wave}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/gn-cin-cout/arcanna-helm
+        targetRevision: arcanna
+        path: 'charts/{{.chart}}'
+        helm:
+          releaseName: '{{.release}}'
+          valueFiles:
+            - '../../envs/{{.env}}/_common.yaml'
+            - '../../envs/{{.env}}/{{.name}}.yaml'
+      destination:
+        server: '{{.cluster}}'
+        namespace: '{{.namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
