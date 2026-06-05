@@ -1,0 +1,24 @@
+image:
+  application: confluentinc/cp-server:8.0.0
+  init: confluentinc/confluent-init-container:2.11.2
+
+kraft:
+  replicas: 1
+  dataVolumeCapacity: 2Gi
+  storageClassName: standard-rwo
+
+kafka:
+  replicas: 1
+  dataVolumeCapacity: 10Gi
+  storageClassName: standard-rwo
+  jvm: "-Xmx1G -Xms1G"
+  config:
+    autoCreateTopics: true
+    defaultReplicationFactor: 1
+    minInsyncReplicas: 1
+    offsetsTopicReplicationFactor: 1
+    transactionStateLogReplicationFactor: 1
+    transactionStateLogMinIsr: 1
+    messageMaxBytes: 50000000
+    replicaFetchMaxBytes: 50000000
+    logRetentionHours: 8
