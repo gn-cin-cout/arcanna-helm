@@ -1,0 +1,18 @@
+clusterName: aiops-trial
+
+nodeSets:
+  - name: default
+    count: 1
+    config:
+      node.store.allow_mmap: false
+    javaOpts: "-Xms1g -Xmx1g"
+    resources:
+      requests:
+        memory: "2Gi"
+        cpu: "250m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+    storage:
+      size: 5Gi
+      storageClassName: standard-rwo
