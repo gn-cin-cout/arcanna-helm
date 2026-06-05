@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: confluent-operator-namespaced
+  labels:
+    app.kubernetes.io/managed-by: arcanna-cfk-rbac
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.serviceAccountName }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: confluent-operator-namespaced
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,5 @@
+apiVersion: v2
+name: cfk-rbac
+description: Namespaced RBAC for CFK operator (restricts it to its namespace)
+type: application
+version: 0.1.0
