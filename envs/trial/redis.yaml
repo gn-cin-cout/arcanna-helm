@@ -1,0 +1,30 @@
+image:
+  repository: redis
+  tag: "7.4-alpine"
+
+resources:
+  requests:
+    cpu: "50m"
+    memory: "64Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+
+persistence:
+  enabled: true
+  storageClassName: standard-rwo
+  size: 2Gi
+  accessMode: ReadWriteOnce
+
+secretName: redis-credentials
+
+secret:
+  create: false      # secret comes from ESO, not the chart
+
+service:
+  port: 6379
+
+config:
+  save: "60 1"
+  loglevel: "warning"
+  maxmemoryPolicy: "allkeys-lru"
