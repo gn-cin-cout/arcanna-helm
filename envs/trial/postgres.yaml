@@ -1,0 +1,26 @@
+image:
+  repository: postgres
+  tag: "16.4"
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+persistence:
+  enabled: true
+  storageClassName: standard-rwo
+  size: 5Gi
+  accessMode: ReadWriteOnce
+
+secretName: postgres-credentials
+
+secret:
+  create: false      # secret comes from ESO/ExternalSecret, never created by this chart
+
+service:
+  type: ClusterIP
+  port: 5432
